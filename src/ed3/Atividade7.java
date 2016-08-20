@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Atividade7 {
     public static void main(String[] args) {
         Scanner tc = new Scanner(System.in);
-        int op=0, qtd=0, flag=1, ano;
+        int op=0, qtd=0, ano;
         double preco;
         String marca, cor;
         class Carro{
@@ -18,6 +18,8 @@ public class Atividade7 {
         }
         Carro vetcarros[]= new Carro[3];
         do{
+            int flag=0;
+            System.out.println("");
             System.out.println("Escolha uma opção: ");
             System.out.println("1- Incluir Carro");
             System.out.println("2- Pesquisar por Preço");
@@ -28,12 +30,12 @@ public class Atividade7 {
                 case 1:
                     do{
                     Carro c= new Carro();
-                        System.out.println("Carro ["+qtd+"]:");
+                        System.out.println("Carro ["+(qtd+1)+"]:");
                         System.out.println("Digite a marca:");
                         c.marca=tc.next();
-                        System.out.println("Digite a cor");
+                        c.marca=tc.nextLine();
+                        System.out.println("Digite a cor: ");
                         c.cor=tc.next();
-                        c.cor=tc.nextLine();
                         System.out.println("Digite o ano: ");
                         c.ano=tc.nextInt();
                         System.out.println("Digite o preco: ");
@@ -48,35 +50,38 @@ public class Atividade7 {
                     System.out.println("Digite um Preço: ");
                     preco=tc.nextDouble();
                     for(int i=0; i<qtd; i++) {
-                        if (preco <= vetcarros[i].preco) {
+                        if (vetcarros[i].preco<=preco) {
                             System.out.println("Marca: " + vetcarros[i].marca);
                             System.out.println("Cor: " + vetcarros[i].cor);
                             System.out.println("Ano: " + vetcarros[i].ano);
                             System.out.println("");
-                            flag=0;
+                            flag=1;
                         }
                     }
-                    if(flag!=0){
+                    if(flag!=1){
                         System.out.println("Nenhum carro encontrado.");
                     }
                     break;
                 case 3:
                     System.out.println("Digite a Marca:");
+                    marca=tc.next();
                     marca=tc.nextLine();
                     for(int i=0; i<qtd; i++){
-                        if(marca.equals(vetcarros[i].marca)){
+                        if(vetcarros[i].marca.equals(marca)){
                             System.out.println("Preço: "+vetcarros[i].preco);
                             System.out.println("Ano: "+vetcarros[i].ano);
                             System.out.println("Cor:"+vetcarros[i].cor);
-                            flag=2;
+                            System.out.println("");
+                            flag=1;
                         }
-                        if(flag!=2){
-                            System.out.println("Nenhum carro encontrado.");
-                        }
+                    }
+                    if(flag!=1){
+                        System.out.println("Nenhum carro encontrado.");
                     }
                     break;
                 case 4:
                     System.out.println("Digite a marca:");
+                    marca=tc.next();
                     marca=tc.nextLine();
                     System.out.println("Digite a cor: ");
                     cor=tc.nextLine();
@@ -85,10 +90,10 @@ public class Atividade7 {
                     for(int i=0; i<qtd; i++){
                         if(marca.equals(vetcarros[i].marca)&& cor.equals(vetcarros[i].cor) && ano==vetcarros[i].ano){
                             System.out.println("Preço do Carro["+i+"]: "+vetcarros[i].preco);
-                            flag=3;
+                            flag=1;
                         }
                     }
-                    if(flag!=3){
+                    if(flag!=1){
                         System.out.println("Nenhum carro encontrado.");
                     }
                     break;
