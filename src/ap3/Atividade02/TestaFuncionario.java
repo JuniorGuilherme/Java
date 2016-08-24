@@ -1,4 +1,4 @@
-package ap3;
+package ap3.Atividade02;
 
 /**
  * Created by jrg_c on 24/08/2016.

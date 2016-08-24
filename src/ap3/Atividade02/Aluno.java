@@ -1,4 +1,4 @@
-package ap3;
+package ap3.Atividade02;
 
 import java.util.Date;
 
