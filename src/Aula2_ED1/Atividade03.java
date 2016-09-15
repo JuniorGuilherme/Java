@@ -1,4 +1,4 @@
-package ed3;
+package Aula2_ED1;
 
 import java.util.Scanner;
 
@@ -21,11 +21,11 @@ public class Atividade03 {
             do {
                 System.out.println("Digite um numero maior que o ultimo digitado (" + aux + ").");
                 vetor[i] = teclado.nextInt();
-            } while(vetor[i]<aux);
-            aux=vetor[i];
+            } while (vetor[i] < aux);
+            aux = vetor[i];
         }
-        for(i=0;i<10;i++){
-            System.out.println("Valor ["+i+"]: "+vetor[i]);
+        for (i = 0; i < 10; i++) {
+            System.out.println("Valor [" + i + "]: " + vetor[i]);
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class PilhaRamon {
     public Object[] pilha = new Object[10];
     public int topo;
+    public Scanner tc = new Scanner(System.in);
 
     public void isInit(){
         System.out.println("Pilha Inicializada");
@@ -55,40 +56,78 @@ public class PilhaRamon {
             return false;
     }
 
+    public char valida() {
+        char n;
+        do {
+            System.out.println("Digite S ou N: ");
+            n = tc.next().toUpperCase().charAt(0);
+        }
+        while (n != 'N' && n != 'S');
+        return n;
+    }
+
     public static void main(String[] args) {
         PilhaRamon minhaPilha = new PilhaRamon();
         Object ob, ob2;
         Scanner tc = new Scanner(System.in);
+        int op = 0;
 
-        minhaPilha.isInit();
-        System.out.println("Digite algo:");
-        ob=tc.next();
-        minhaPilha.push(ob);
-
-        System.out.println("Digite algo:");
-        ob2=tc.next();
-        minhaPilha.push(ob2);
-
-        minhaPilha.exibir();
-
-        System.out.println("Desempilhando..");
-        if(minhaPilha.pop())
-            System.out.println("Elemento desempilhado.");
-        else
-            System.out.println("Pilha ainda vazia.");
-
-        minhaPilha.top();
-
-        minhaPilha.pull();
-
-        if(minhaPilha.isEmpty())
-            System.out.println("Pilha esta vazia.");
-        else
-            System.out.println("Pilha contem elementos.");
-        if(minhaPilha.isFull())
-            System.out.println("Pilha esta cheia.");
-        else
-            System.out.println("Pilha ainda possui vagas.");
+        do {
+            System.out.println("Digite a ação desejada:");
+            System.out.println("");
+            System.out.println("1- Inicializar Pilha");
+            System.out.println("2- Push");
+            System.out.println("3- Exibir");
+            System.out.println("4- Pop");
+            System.out.println("5- Top");
+            System.out.println("6- isEmpty");
+            System.out.println("7- isFull");
+            System.out.println("8- Pull");
+            System.out.println("9- Sair ");
+            op = tc.nextInt();
+            switch (op) {
+                case 1:
+                    minhaPilha.isInit();
+                    break;
+                case 2:
+                    do {
+                        System.out.println("Digite algo:");
+                        ob = tc.next();
+                        minhaPilha.push(ob);
+                        System.out.println("Deseja adicionar outro elemento?");
+                    } while (minhaPilha.valida() == 's');
+                    break;
+                case 3:
+                    minhaPilha.exibir();
+                    break;
+                case 4:
+                    if (minhaPilha.pop())
+                        System.out.println("Elemento desempilhado.");
+                    else
+                        System.out.println("Pilha ainda vazia.");
+                    break;
+                case 5:
+                    minhaPilha.top();
+                    break;
+                case 6:
+                    if (minhaPilha.isEmpty())
+                        System.out.println("Pilha esta vazia.");
+                    else
+                        System.out.println("Pilha contem elementos.");
+                    break;
+                case 7:
+                    if (minhaPilha.isFull())
+                        System.out.println("Pilha esta cheia.");
+                    else
+                        System.out.println("Pilha ainda possui vagas.");
+                    break;
+                case 8:
+                    minhaPilha.pull();
+                    break;
+                case 9:
+                    System.out.println("Pilha encerrada.");
+            }
+        } while (op != 9);
     }
 }
 

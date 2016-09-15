@@ -1,4 +1,4 @@
-package ed5;
+package Aula4_ED1;
 
 import java.util.Scanner;
 
@@ -10,18 +10,19 @@ public class Atividade5 {
         int num;
         int num2;
         Scanner tc = new Scanner(System.in);
-        do{
+        do {
             System.out.println("Numero 1: ");
-            num=tc.nextInt();
-            num2=tc.nextInt();
-            if(num%2!=0 || num2%2==0){
+            num = tc.nextInt();
+            num2 = tc.nextInt();
+            if (num % 2 != 0 || num2 % 2 == 0) {
                 System.out.println("O primeiro deve ser par e o ultimo impar.");
             }
-        }while(num%2!=0 || num2%2==0);
-        System.out.println("Soma:"+Soma(num, num2));
+        } while (num % 2 != 0 || num2 % 2 == 0);
+        System.out.println("Soma:" + Soma(num, num2));
     }
-    public static int Soma (int n1, int n2){
-        int soma = n1+n2;
-        return(soma);
+
+    public static int Soma(int n1, int n2) {
+        int soma = n1 + n2;
+        return (soma);
     }
 }
