@@ -81,7 +81,13 @@ public class SetorImpressao {
                 }
                 break;
                 case 7:{
-                    e.entregar();
+
+                    if(e.isEmpty()){
+                        System.out.println("Nem um documento na lista de entrega ainda");
+                    }
+                    else {
+                        e.entregar();
+                    }
                 }
                 break;
                 case 8:{
