@@ -13,60 +13,64 @@ public class Cao {
     char sexo, pedigree, premiacoes;
     Scanner tc = new Scanner(System.in);
     NomeSemelhante ns = new NomeSemelhante();
+    Canil canil = new Canil();
 
-    public Cao cadastrar(){
+    public Cao cadastrar(ArrayList<Cao> x){
         Cao c = new Cao();
+        int flag;
         System.out.println("Nome: ");
-        c.nome=tc.next();
+        do {
+            flag=0;
+            c.nome = tc.nextLine();
+            for(int i=0; i<x.size(); i++){
+                if(c.nome.equalsIgnoreCase(x.get(i).nome)){
+                    System.out.println("Ja existe um cão com este nome.");
+                    flag=1;
+                }
+            }
+        }while(flag==1);
         System.out.println("Idade: ");
-        c.idade=tc.nextInt();
+        c.idade=canil.validaInt();
         System.out.println("Raça: ");
-        c.raca=tc.next();
+        c.raca=tc.nextLine();
         System.out.println("Sexo:");
-        c.sexo=tc.next().charAt(0);
-        System.out.println("Pedigree: ");
-        c.pedigree=tc.next().charAt(0);
-        System.out.println("Premiações: ");
-        c.premiacoes=tc.next().charAt(0);
+        do {
+            c.sexo = tc.next().toUpperCase().charAt(0);
+            if(c.sexo != 'M' && c.sexo != 'F'){
+                System.out.println("Digite apenas M ou F");
+            }
+        }while((c.sexo != 'M' && c.sexo != 'F'));
+        System.out.println("Pedigree: Sim(S) ou Não(N)");
+        do {
+            c.pedigree=tc.next().toUpperCase().charAt(0);
+            if(c.pedigree != 'S' && c.pedigree != 'N'){
+                System.out.println("Digite apenas S ou N");
+            }
+        }while((c.sexo != 'M' && c.sexo != 'F'));
+        System.out.println("Premiações: Sim(S) ou Não(N)");
+        do {
+            c.premiacoes=tc.next().toUpperCase().charAt(0);
+            if(c.premiacoes != 'S' && c.premiacoes != 'N'){
+                System.out.println("Digite apenas S ou N");
+            }
+        }while((c.premiacoes != 'M' && c.premiacoes != 'F'));
         return c;
     }
-    public void listarNS(String y, ArrayList<Cao> x){
-        for(int i =0; i<x.size(); i++){
-            if(ns.compareString(y, x.get(i).nome)) {
-                System.out.println("Nome: " + x.get(i).nome);
-                System.out.println("Idade: " + x.get(i).idade);
-                System.out.println("Raça: " + x.get(i).raca);
-                System.out.println("Sexo:" + x.get(i).sexo);
-                System.out.println("Pedigree: " + x.get(i).pedigree);
-                System.out.println("Premiações: " + x.get(i).premiacoes);
-                System.out.println("");
+    public boolean nomeSemelhante(String y, String x){
+            if(ns.compareString(y, x)) {
+                return true;
             }
+            else {
+                return false;
         }
     }
-    public void listarNE(String y, ArrayList<Cao> x){
-        for( int i=0; i<x.size(); i++){
-            if(y.equalsIgnoreCase(x.get(i).nome)){
-                System.out.println("Nome: " + x.get(i).nome);
-                System.out.println("Idade: " + x.get(i).idade);
-                System.out.println("Raça: " + x.get(i).raca);
-                System.out.println("Sexo:" + x.get(i).sexo);
-                System.out.println("Pedigree: " + x.get(i).pedigree);
-                System.out.println("Premiações: " + x.get(i).premiacoes);
-                System.out.println("");
-            }
-        }
-    }
-    public void listarPedigree(char s, ArrayList<Cao> x){
-        for( int i=0; i<x.size(); i++){
-            if(x.get(i).pedigree==s){
-                System.out.println("Nome: " + x.get(i).nome);
-                System.out.println("Idade: " + x.get(i).idade);
-                System.out.println("Raça: " + x.get(i).raca);
-                System.out.println("Sexo:" + x.get(i).sexo);
-                System.out.println("Pedigree: " + x.get(i).pedigree);
-                System.out.println("Premiações: " + x.get(i).premiacoes);
-                System.out.println("");
-            }
-        }
+    public void listarCao(Cao x){
+        System.out.println("Nome: " + x.nome);
+        System.out.println("Idade: " + x.idade);
+        System.out.println("Raça: " + x.raca);
+        System.out.println("Sexo: " + x.sexo);
+        System.out.println("Pedigree: " + x.pedigree);
+        System.out.println("Premiações: " + x.premiacoes);
+        System.out.println("");
     }
 }

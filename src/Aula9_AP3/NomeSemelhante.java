@@ -8,22 +8,29 @@ import java.util.Scanner;
 public class NomeSemelhante {
     public static boolean compareString(String x, String y){
         int cont=0, aux=0;
-        for(int i=0; i<x.length(); i++){
-            if(!(cont==y.length())) {
-                if (x.charAt(i) == y.charAt(cont++)) {
-                    aux++;
-                    if (aux == 5) {
-                        i = x.length();
+        if (y.length() > 4) {
+            for (int i = 0; i < x.length(); i++) {
+                if (!(cont == y.length())) {
+                    if (x.charAt(i) == y.charAt(cont++)) {
+                        aux++;
+                        if (aux == 5) {
+                            i = x.length();
+                        }
+                    } else {
+                        aux = 0;
+                        cont = 0;
                     }
                 } else {
-                    aux = 0;
+                    i = x.length();
                 }
             }
-            else {
-                i = x.length();
+        }
+        else{
+            if(x.equalsIgnoreCase(y)){
+                aux=7;
             }
         }
-        if(aux==5){
+        if(aux==5 || aux==7){
             return true;
         }
         else{
