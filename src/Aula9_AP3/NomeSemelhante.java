@@ -9,14 +9,19 @@ public class NomeSemelhante {
     public static boolean compareString(String x, String y){
         int cont=0, aux=0;
         for(int i=0; i<x.length(); i++){
+            if(!(cont==y.length())) {
                 if (x.charAt(i) == y.charAt(cont++)) {
                     aux++;
-                    if(aux==5){
-                        i=x.length();
+                    if (aux == 5) {
+                        i = x.length();
                     }
                 } else {
                     aux = 0;
                 }
+            }
+            else {
+                i = x.length();
+            }
         }
         if(aux==5){
             return true;
